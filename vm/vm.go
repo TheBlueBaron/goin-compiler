@@ -9,9 +9,9 @@ import (
 
 const StackSize = 2048
 
-var True = &object.Boolean{Value: true}
-var False = &object.Boolean{Value: false}
-var Null = &object.Null{}
+var TRUE 	= &object.Boolean{Value: true}
+var FALSE 	= &object.Boolean{Value: false}
+var NULL 	= &object.Null{}
 
 type VM struct {
 	constants 		[]object.Object
@@ -62,13 +62,13 @@ func (vm *VM) Run() error {
 			vm.pop()
 
 		case code.OpTrue:
-			err := vm.push(True)
+			err := vm.push(TRUE)
 			if err != nil {
 				return err
 			}
 
 		case code.OpFalse:
-			err := vm.push(False)
+			err := vm.push(FALSE)
 			if err != nil {
 				return err
 			}
@@ -105,7 +105,7 @@ func (vm *VM) Run() error {
 			}
 
 		case code.OpNull:
-			err := vm.push(Null)
+			err := vm.push(NULL)
 			if err != nil {
 				return err
 			}
@@ -210,14 +210,14 @@ func (vm *VM) executeBangOperator() error {
 	operand := vm.pop()
 
 	switch operand {
-	case True:
-		return vm.push(False)
-	case False:
-		return vm.push(True)
-	case Null:
-		return vm.push(True)
+	case TRUE:
+		return vm.push(FALSE)
+	case FALSE:
+		return vm.push(TRUE)
+	case NULL:
+		return vm.push(TRUE)
 	default:
-		return vm.push(False)
+		return vm.push(FALSE)
 	}
 }
 
@@ -234,10 +234,10 @@ func (vm *VM) executeMinusOperator() error {
 
 func nativeBoolToBooleanObject(input bool) *object.Boolean {
 	if input {
-		return True
+		return TRUE
 	}
 
-	return False
+	return FALSE
 }
 
 func isTruthy(obj object.Object) bool {

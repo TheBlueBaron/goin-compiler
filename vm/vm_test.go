@@ -65,8 +65,8 @@ func TestBooleanExpressions(t *testing.T) {
         {"!!true", true},
         {"!!false", false},
         {"!!5", true},
-		{"if (1 > 2) { 10 }", Null},
-        {"if (false) { 10 }", Null},
+		{"if (1 > 2) { 10 }", NULL},
+        {"if (false) { 10 }", NULL},
 		{"!(if (false) { 5; })", true},
 	}
 
@@ -129,7 +129,7 @@ func testExpectedObject(t *testing.T, expected interface{}, actual object.Object
 		}
 
 	case *object.Null:
-		if actual != Null {
+		if actual != NULL {
 			t.Errorf("object is not Null: %T (%+v)", actual, actual)
 		}
 	}
