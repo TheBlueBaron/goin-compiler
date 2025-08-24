@@ -17,7 +17,7 @@ type SymbolTable struct {
 	numDefinitions 	int
 }
 
-func newSymbolTable() *SymbolTable {
+func NewSymbolTable() *SymbolTable {
 	s := make(map[string]Symbol)
 	return &SymbolTable{store: s}
 }

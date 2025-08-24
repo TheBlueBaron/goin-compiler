@@ -8,7 +8,7 @@ func TestDefine(t *testing.T) {
         "b": Symbol{Name: "b", Scope: GlobalScope, Index: 1},
 	}
 
-	global := newSymbolTable()
+	global := NewSymbolTable()
 
 	a := global.Define("a")
 	if a != expected["a"] {
@@ -22,7 +22,7 @@ func TestDefine(t *testing.T) {
 }
 
 func TestResolveGlobal(t *testing.T) {
-	global := newSymbolTable()
+	global := NewSymbolTable()
 	global.Define("a")
 	global.Define("b")
 
