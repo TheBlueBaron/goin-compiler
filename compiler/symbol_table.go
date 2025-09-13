@@ -7,6 +7,7 @@ const (
 	LocalScope 		SymbolScope = "LOCAL"
 	BuiltinScope 	SymbolScope = "BUILTIN"
 	FreeScope		SymbolScope = "FREE"
+	FunctionScope	SymbolScope = "FUNCTION"
 )
 
 type Symbol struct {
@@ -69,6 +70,12 @@ func (s *SymbolTable) Resolve(name string) (Symbol, bool) {
 		return free, true
 	}
 	return obj, ok
+}
+
+func (s *SymbolTable) DefineFunctionName(name string) Symbol {
+	symbol := Symbol{Name: name, Index: 0, Scope: FunctionScope}
+	s.store[name] = symbol
+	return symbol
 }
 
 func (s *SymbolTable) defineFree(original Symbol) Symbol {
